@@ -1,11 +1,13 @@
-import Services.CrudService
+package Services
+
+import getUniwueId
 import model.Note
 
 class NotesService : CrudService<Note> {
     private val userNotes = mutableMapOf<String, MutableList<Note>>()
 
     override fun add(userId: String, newItem: Note) {
-        val uniqueId=getUniwueId()
+        val uniqueId = getUniwueId()
         userNotes[userId]?.let {
             it.add(newItem)
         } ?: kotlin.run {
@@ -16,16 +18,16 @@ class NotesService : CrudService<Note> {
     }
 
     override fun delete(userId: String, itemId: String) {
-userNotes[userId]?.removeIf{
-    it.noteId == itemId
-}
+        userNotes[userId]?.removeIf {
+            it.noteId == itemId
+        }
 
     }
 
     override fun get(userId: String, vararg ids: String): List<Note> {
-       return userNotes[userId]?.filter {
-           ids.contains(it.noteId)
-       }?: emptyList()
+        return userNotes[userId]?.filter {
+            ids.contains(it.noteId)
+        } ?: emptyList()
     }
 
 

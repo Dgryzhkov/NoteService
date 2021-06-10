@@ -1,2 +1,3 @@
+package model
 
-data class Comment (val noteId: String, val message: String )
+data class Comment(val noteId: String, val message: String)

@@ -1,6 +1,6 @@
 package Services
 
-import Comment
+import model.Comment
 
 class CommentServices : CrudService<Comment> {
     private val userNotes = mutableMapOf<String, MutableList<Comment>>()
@@ -29,6 +29,6 @@ class CommentServices : CrudService<Comment> {
         return userNotes[userId]?.filter {
             ids.contains(it.noteId)
 
-        }?: emptyList()
+        } ?: emptyList()
     }
 }

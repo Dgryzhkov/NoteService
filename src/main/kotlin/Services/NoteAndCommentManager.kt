@@ -1,7 +1,6 @@
 package Services
 
-import Comment
-import NotesService
+import model.Comment
 import getUniwueId
 import model.Note
 
@@ -9,7 +8,7 @@ object NoteAndCommentManager {
     private val commentServices = CommentServices()
     private val noteServices = NotesService()
 
-    fun addNote(userId:String, title:String, text:String):String{
+    fun addNote(userId: String, title: String, text: String): String {
         val uniqueId = getUniwueId().toString()
         val newNote = Note(uniqueId, title, text)
         noteServices.add(userId, newNote)
@@ -25,5 +24,5 @@ object NoteAndCommentManager {
         noteServices.get(userId, *noteIds)
 
     fun getComments(userId: String, vararg noteIds: String) =
-        commentServices.get(userId,*noteIds)
+        commentServices.get(userId, *noteIds)
 }
